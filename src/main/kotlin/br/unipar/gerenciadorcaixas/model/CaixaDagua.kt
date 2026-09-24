@@ -1,9 +1,13 @@
 package br.unipar.gerenciadorcaixas.model
 
+import br.unipar.gerenciadorcaixas.enums.CorCaixa
+import br.unipar.gerenciadorcaixas.enums.Formato
+import br.unipar.gerenciadorcaixas.enums.MarcaCaixa
+import br.unipar.gerenciadorcaixas.enums.Material
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
-import org.springframework.data.annotation.Id
+import jakarta.persistence.Id
 
 @Entity // Indica para o JPA que essa classe representa uma tabela no DB
 data class CaixaDagua(
