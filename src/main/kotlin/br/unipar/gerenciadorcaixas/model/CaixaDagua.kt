@@ -8,8 +8,10 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.Table
 
 @Entity // Indica para o JPA que essa classe representa uma tabela no DB
+@Table(name="caixa_da_agua")
 data class CaixaDagua(
 
     @Id // Marca qual atributo é a PK

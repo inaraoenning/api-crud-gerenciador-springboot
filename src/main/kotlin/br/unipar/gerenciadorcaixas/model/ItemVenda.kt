@@ -1,12 +1,14 @@
 package br.unipar.gerenciadorcaixas.model
 
 import jakarta.persistence.Entity
+import jakarta.persistence.Table
 
 // Representa um item dentro de uma venda.
 // Pode ser uma caixa d'agua (produto) OU um servico, nunca os dois ao mesmo tempo.
 // O campo caixaDaguaId ou servicoId fica nulo dependendo do tipo do item.
 
 @Entity
+@Table(name="item_venda")
 data class ItemVenda(
     val id: Int = 0,
     val vendaId: Int = 0,

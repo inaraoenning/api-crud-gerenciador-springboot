@@ -2,6 +2,7 @@ package br.unipar.gerenciadorcaixas.model
 
 import br.unipar.gerenciadorcaixas.enums.TipoPessoa
 import jakarta.persistence.Entity
+import jakarta.persistence.Table
 
 // Cliente herda de Pessoa.
 // Nao adiciona campos novos, so define o tipo como CLIENTE para o sistema diferenciar.
@@ -10,6 +11,7 @@ import jakarta.persistence.Entity
 // a chave primária e a estratégia de geração diretamente da classe mãe (Pessoa).
 
 @Entity
+@Table(name="cliente")
  class Cliente(
     idCliente: Int,
     nomeCliente: String,
