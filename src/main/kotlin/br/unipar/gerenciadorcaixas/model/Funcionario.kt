@@ -12,7 +12,7 @@ import java.math.BigDecimal
 @Entity
 @Table(name="funcionario")
 class Funcionario(
-    idFuncionario: Int,
+    idFuncionario: Long,
     nomeFuncionario: String,
     documentoFuncionario: String,
     telefoneFuncionario: String,

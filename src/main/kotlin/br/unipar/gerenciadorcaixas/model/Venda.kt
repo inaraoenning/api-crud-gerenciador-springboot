@@ -10,7 +10,7 @@ import jakarta.persistence.Table
 @Entity
 @Table(name="venda")
 data class Venda(
-    val id: Int = 0,
+    val id: Long = 0,
     val funcionarioId: Int,
     val clienteId: Int,
     val dataHora: LocalDateTime = LocalDateTime.now(),

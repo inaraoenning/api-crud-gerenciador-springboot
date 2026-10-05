@@ -10,7 +10,7 @@ import jakarta.persistence.Table
 @Entity
 @Table(name="item_venda")
 data class ItemVenda(
-    val id: Int = 0,
+    val id: Long = 0,
     val vendaId: Int = 0,
     val caixaDaguaId: Int? = null,
     val servicoId: Int? = null,

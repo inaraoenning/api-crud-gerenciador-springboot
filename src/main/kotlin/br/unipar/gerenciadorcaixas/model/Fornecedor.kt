@@ -11,7 +11,7 @@ import jakarta.persistence.Table
 @Entity
 @Table(name="fornecedor")
 data class Fornecedor(
-    val idFornecedor: Int,
+    val idFornecedor: Long,
     val nomeFornecedor: String,
     val razaoFornecedor: String,
     val documentoFornecedor: String,

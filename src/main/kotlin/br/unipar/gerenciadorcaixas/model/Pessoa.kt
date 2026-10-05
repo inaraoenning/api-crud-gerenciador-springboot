@@ -15,7 +15,7 @@ import jakarta.persistence.Table
 @Table(name="pessoa")
 open class Pessoa(
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
-    val id: Int = 0,
+    val id: Long = 0,
     val nome: String = "",
     val documento: String,
     val telefone: String,

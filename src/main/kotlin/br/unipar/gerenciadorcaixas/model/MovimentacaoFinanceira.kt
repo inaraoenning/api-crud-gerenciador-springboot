@@ -14,7 +14,7 @@ import jakarta.persistence.Table
 // Representa uma entrada ou saida de dinheiro do caixa.
 // Bate com a tabela MOVIMENTACAO_FINANCEIRA do banco.
 data class MovimentacaoFinanceira(
-    val id: Int = 0,
+    val id: Long = 0,
     val valor: Double,
     val pagador: String,
     val recebedor: String,

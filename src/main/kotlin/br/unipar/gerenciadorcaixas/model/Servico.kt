@@ -7,7 +7,7 @@ import jakarta.persistence.Table
 @Entity
 @Table(name="servicos")
 data class Servico(
-    val id: Int,
+    val id: Long = 0,
     val nome: String,
     val descricao: String,
     val preco: Double

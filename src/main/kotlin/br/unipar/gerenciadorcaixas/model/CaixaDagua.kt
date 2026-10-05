@@ -16,7 +16,7 @@ data class CaixaDagua(
 
     @Id // Marca qual atributo é a PK
     @GeneratedValue(strategy = GenerationType.SEQUENCE) // Informa que o valor da PK será gerado automaticamente
-    val id: Int,
+    val id: Long = 0,
     val marca: MarcaCaixa,
     val modelo: String,
     val capacidadeLitros: Int,

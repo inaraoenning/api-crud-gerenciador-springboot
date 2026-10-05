@@ -13,7 +13,7 @@ import jakarta.persistence.Table
 @Entity
 @Table(name="cliente")
  class Cliente(
-    idCliente: Int,
+    idCliente: Long,
     nomeCliente: String,
     documentoCliente: String,
     telefoneCliente: String,
