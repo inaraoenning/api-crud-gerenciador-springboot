@@ -11,7 +11,6 @@ import jakarta.persistence.Table
 // a chave primária e a estratégia de geração diretamente da classe mãe (Pessoa).
 
 @Entity
-@Table(name="cliente")
  class Cliente(
     idCliente: Long,
     nomeCliente: String,

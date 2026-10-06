@@ -2,6 +2,9 @@ package br.unipar.gerenciadorcaixas.model
 
 import br.unipar.gerenciadorcaixas.enums.TipoMovimentacao
 import jakarta.persistence.Entity
+import jakarta.persistence.GeneratedValue
+import jakarta.persistence.GenerationType
+import jakarta.persistence.Id
 import java.time.LocalDateTime
 import jakarta.persistence.Table
 
@@ -14,6 +17,7 @@ import jakarta.persistence.Table
 // Representa uma entrada ou saida de dinheiro do caixa.
 // Bate com a tabela MOVIMENTACAO_FINANCEIRA do banco.
 data class MovimentacaoFinanceira(
+    @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     val id: Long = 0,
     val valor: Double,
     val pagador: String,

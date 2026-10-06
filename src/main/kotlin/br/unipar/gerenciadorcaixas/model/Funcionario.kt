@@ -10,7 +10,6 @@ import java.math.BigDecimal
 // Heranca eh usada porque funcionario, cliente e fornecedor compartilham os mesmos dados basicos.
 
 @Entity
-@Table(name="funcionario")
 class Funcionario(
     idFuncionario: Long,
     nomeFuncionario: String,

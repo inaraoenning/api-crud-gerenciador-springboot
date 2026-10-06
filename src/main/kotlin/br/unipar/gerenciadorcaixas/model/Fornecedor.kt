@@ -9,7 +9,6 @@ import jakarta.persistence.Table
 // Heranca permite tratar funcionario, cliente e fornecedor como Pessoa quando necessario.
 
 @Entity
-@Table(name="fornecedor")
 data class Fornecedor(
     val idFornecedor: Long,
     val nomeFornecedor: String,
