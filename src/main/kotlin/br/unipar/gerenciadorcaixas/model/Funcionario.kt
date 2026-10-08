@@ -15,7 +15,7 @@ class Funcionario(
     nomeFuncionario: String,
     documentoFuncionario: String,
     telefoneFuncionario: String,
-    val salario: BigDecimal,
+    val salario: BigDecimal = BigDecimal.ZERO,
     val setor: Setor,
 ) :
     Pessoa(
