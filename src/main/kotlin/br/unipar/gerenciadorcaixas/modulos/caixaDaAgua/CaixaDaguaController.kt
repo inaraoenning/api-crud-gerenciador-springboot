@@ -9,8 +9,11 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.PathVariable
 import org.springframework.web.bind.annotation.PostMapping
+import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
+import java.time.LocalDateTime
+import kotlin.time.Instant
 
 @RestController
 @RequestMapping("/api/caixas-dagua")
@@ -27,23 +30,9 @@ class CaixaDaguaController(
         ?: ResponseEntity.notFound().build() // 404
 
     @PostMapping("/salvar")
-    fun salvar(){
-        CaixaDagua(
-            id = 0,
-            marca = MarcaCaixa.Agualimp,
-            modelo = "modelo",
-            capacidadeLitros = 1000,
-            largura = 10.0,
-            altura = 1.0,
-            profundidade = 5.0,
-            cor = CorCaixa.Azul,
-            material = Material.FIBRA_DE_VIDRO,
-            formato = Formato.Conico,
-            preco = 500.00,
-            quantidade = 1,
-            fornecedorId = 0,
-            nomeFornecedor = "Joao da Caixa",
-        )
+    fun salvar(@RequestBody caixa: CaixaDagua){
+
+        service.salvar(caixa)
     }
 
 

@@ -4,11 +4,14 @@ import br.unipar.gerenciadorcaixas.enums.CorCaixa
 import br.unipar.gerenciadorcaixas.enums.Formato
 import br.unipar.gerenciadorcaixas.enums.MarcaCaixa
 import br.unipar.gerenciadorcaixas.enums.Material
+import jakarta.persistence.Column
 import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
 import jakarta.persistence.Table
+import org.hibernate.annotations.CreationTimestamp
+import kotlin.time.Instant
 
 @Entity // Indica para o JPA que essa classe representa uma tabela no DB
 @Table(name="caixa_da_agua")
@@ -16,7 +19,7 @@ data class CaixaDagua(
 
     @Id // Marca qual atributo é a PK
     @GeneratedValue(strategy = GenerationType.SEQUENCE) // Informa que o valor da PK será gerado automaticamente
-    val id: Long = 0,
+    val id: Long? = null,
     val marca: MarcaCaixa,
     val modelo: String,
     val capacidadeLitros: Int,
@@ -30,4 +33,7 @@ data class CaixaDagua(
     val quantidade: Int,
     val fornecedorId: Int,
     val nomeFornecedor: String = "",
+    // @CreationTimestamp
+    // @Column(updatable = false)
+//    val dataCriacao: Instant? = null
 )
