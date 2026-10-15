@@ -1,5 +1,6 @@
 package br.unipar.gerenciadorcaixas.modulos.caixaDaAgua
 
+import br.unipar.gerenciadorcaixas.enums.Material
 import br.unipar.gerenciadorcaixas.model.CaixaDagua
 import kotlin.Long
 import org.springframework.stereotype.Service
@@ -25,7 +26,22 @@ class CaixaDaguaService(
     }
 
     // Método usando a query customizada que criamos no Repository
-    fun buscarPorMaterial(material: String): List<CaixaDagua> {
+    fun buscarPorMaterial(material: Material): List<CaixaDagua> {
         return caixaDAguaRepository.findByMaterial(material)
+    }
+
+    // Método atualizar
+    fun atualizar(id: Long, dados: CaixaDagua): CaixaDagua? {
+        if (!caixaDAguaRepository.existsById(id)) return null
+        // copy() vem de graça pq caixaDagua é data class
+        // forçamos id = id para o JPA fazer UPDATE (merge) ao invés de INSERT.
+        return caixaDAguaRepository.save(dados.copy(id = id))
+    }
+
+    // Método Deletar
+    fun deletar(id: Long): Boolean {
+        if (!caixaDAguaRepository.existsById(id)) return false
+        caixaDAguaRepository.deleteById(id)
+        return true
     }
 }

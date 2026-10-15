@@ -35,5 +35,5 @@ data class CaixaDagua(
     val nomeFornecedor: String = "",
     // @CreationTimestamp
     // @Column(updatable = false)
-//    val dataCriacao: Instant? = null
+    val dataCriacao: Instant? = null
 )

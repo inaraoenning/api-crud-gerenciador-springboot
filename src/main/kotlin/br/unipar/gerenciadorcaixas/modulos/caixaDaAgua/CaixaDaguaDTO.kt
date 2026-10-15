@@ -1,18 +1,23 @@
 package br.unipar.gerenciadorcaixas.modulos.caixaDaAgua
 
+import br.unipar.gerenciadorcaixas.enums.CorCaixa
+import br.unipar.gerenciadorcaixas.enums.MarcaCaixa
+
 class CaixaDaguaDTO {
 
-    marca": "Fortlev",
-    modelo": "string",
-    capacidadeLitros": 0,
-    largura": 0.1,
-    altura": 0.1,
-    "profundidade": 0.1,
-    "cor": "Azul",
-    "material": "POLIETILENO",
-    "formato": "Redondo",
-    "preco": 0.1,
-    "quantidade": 0,
-    "fornecedorId": 0,
-    "nomeFornecedor": "string"
+    data class CaixaDaguaRequest(
+        val marca: MarcaCaixa,
+        val modelo: String,
+        val capacidadeLitros: Int,
+        val largura: Int,
+        val altura: Int,
+        val profundidade: Int,
+        val corCaixa: CorCaixa,
+        val material: String,
+        val formato: String,
+        val preco: Double,
+        val quantidade: Int,
+        val fornecedorId: Int,
+        val dataCricacao: String
+    )
 }
