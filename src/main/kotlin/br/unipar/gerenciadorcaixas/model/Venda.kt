@@ -5,6 +5,7 @@ import jakarta.persistence.Entity
 import jakarta.persistence.GeneratedValue
 import jakarta.persistence.GenerationType
 import jakarta.persistence.Id
+import jakarta.persistence.JoinColumn
 import jakarta.persistence.ManyToOne
 import jakarta.persistence.OneToMany
 import java.time.LocalDateTime
@@ -18,12 +19,21 @@ import jakarta.persistence.Table
 data class Venda(
     @Id @GeneratedValue(strategy = GenerationType.SEQUENCE)
     val id: Long = 0,
-    val funcionarioId: Int,
-    val clienteId: Int,
+
+    @ManyToOne
+    @JoinColumn(name = "funcionario_id")
+    val funcionario: Funcionario? = null,
+
+    @ManyToOne
+    @JoinColumn(name = "cliente_id")
+    val cliente: Cliente? = null,
+
     val dataHora: LocalDateTime = LocalDateTime.now(),
-    val valorTotal: Double,
 
     //@OneToMany — uma venda tem muitos itens.
     @OneToMany(mappedBy = "venda", cascade = [CascadeType.ALL])
-    val itens: List<ItemVenda> = emptyList()
+    val itens: List<ItemVenda> = emptyList(),
+
+    // soma dos itens; o service pode sobrescrever se precisar
+    val valorTotal: Double = itens.sumOf { it.valorTotal },
 )

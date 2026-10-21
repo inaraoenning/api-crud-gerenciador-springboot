@@ -8,5 +8,5 @@ import org.springframework.stereotype.Repository
 interface PessoaRepository: JpaRepository<Pessoa, Long> {
 
     // também pode criar queries customizadas apenas declarando a assinatura do método:
-    fun findByIdAndNomeAndId(id: Long, nome: String): List<Pessoa>
+    fun findByIdAndNome(id: Long, nome: String): List<Pessoa>
 }

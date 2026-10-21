@@ -11,12 +11,12 @@ import java.math.BigDecimal
 
 @Entity
 class Funcionario(
-    idFuncionario: Long,
-    nomeFuncionario: String,
-    documentoFuncionario: String,
-    telefoneFuncionario: String,
+    idFuncionario: Long = 0,
+    nomeFuncionario: String = "",
+    documentoFuncionario: String = "",
+    telefoneFuncionario: String = "",
     val salario: BigDecimal = BigDecimal.ZERO,
-    val setor: Setor,
+    val setor: Setor = Setor.COMERCIAL,
 ) :
     Pessoa(
         id = idFuncionario,

@@ -17,7 +17,7 @@ class PessoaService(
 
     // Método Buscar por ID e Nome
     fun buscarIdNome(id: Long, nome: String): List<Pessoa> {
-        return pessoaRepository.findByIdAndNomeAndId(id, nome)
+        return pessoaRepository.findByIdAndNome(id, nome)
     }
 
     // Método para salvar uma nova pessoa
