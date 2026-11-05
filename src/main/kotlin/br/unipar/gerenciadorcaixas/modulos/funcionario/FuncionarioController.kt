@@ -3,7 +3,4 @@ package br.unipar.gerenciadorcaixas.modulos.funcionario
 import org.springframework.web.bind.annotation.RequestMapping
 import org.springframework.web.bind.annotation.RestController
 
-@RestController
-@RequestMapping("/api/funcionario")
-class FuncionarioController {
-}
+@RestController @RequestMapping("/api/funcionario") class FuncionarioController
