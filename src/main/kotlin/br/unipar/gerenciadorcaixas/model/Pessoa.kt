@@ -16,9 +16,9 @@ import jakarta.persistence.Table
 open class Pessoa(
     @Id @GeneratedValue(GenerationType.SEQUENCE)
     val id: Long = 0,
-    val nome: String = "",
-    val documento: String,
-    val telefone: String,
-    val tipo: TipoPessoa,
+    var nome: String = "",
+    var documento: String,
+    var telefone: String,
+    var tipo: TipoPessoa,
     var ativo: Boolean = true,
 )

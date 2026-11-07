@@ -9,4 +9,7 @@ interface PessoaRepository: JpaRepository<Pessoa, Long> {
 
     // também pode criar queries customizadas apenas declarando a assinatura do método:
     fun findByIdAndNome(id: Long, nome: String): List<Pessoa>
+
+    // Busca registros onde inativo = true
+    fun findByAtivoTrue(): List<Pessoa>
 }

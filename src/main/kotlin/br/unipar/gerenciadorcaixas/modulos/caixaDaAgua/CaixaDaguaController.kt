@@ -25,7 +25,8 @@ class CaixaDaguaController(
 
     @GetMapping
     @Operation(summary = "Listar todas as caixas")
-    fun listar(@RequestParam(name="mostrarInativas", defaultValue = "false") mostrarInativas: Boolean):  ResponseEntity<List<CaixaDagua>>{
+    fun listar(@RequestParam(name="mostrarInativas", defaultValue = "false")
+               mostrarInativas: Boolean):  ResponseEntity<List<CaixaDagua>>{
         val lista = service.listarTodas(mostrarInativas)
         return ResponseEntity.ok(lista)
     }
@@ -64,7 +65,6 @@ class CaixaDaguaController(
     @PatchMapping("/{id}/inativar")
     @Operation(summary = "Inativar uma caixa por ID")
     fun inativar(@PathVariable id:Long): ResponseEntity<Void>{
-
         service.inativar(id)
         return ResponseEntity.noContent().build()
     }
