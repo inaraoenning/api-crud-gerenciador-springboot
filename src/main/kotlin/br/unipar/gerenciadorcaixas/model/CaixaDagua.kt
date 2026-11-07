@@ -32,7 +32,7 @@ data class CaixaDagua(
     var material: Material = Material.POLIETILENO,
     var formato: Formato = Formato.Redondo,
     var preco: Double = 0.0,
-    var inativo: Boolean = true,
+    var ativo: Boolean = true,
     var quantidade: Int = 0,
 
     // @ManyToOne — muitas caixas podem vir do mesmo fornecedor. É aqui que fica a FK.

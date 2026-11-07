@@ -31,7 +31,13 @@ class CaixaDaguaService(
         return caixaDAguaRepository.save(caixa) // id = null → INSERT
     }
 
-    fun listarTodas(): List<CaixaDagua> = caixaDAguaRepository.findAll()
+    fun listarTodas(mostrarInativas: Boolean): List<CaixaDagua> {
+        return if(mostrarInativas){
+            caixaDAguaRepository.findAll()
+        } else {
+            caixaDAguaRepository.findByAtivoTrue()
+        }
+    }
 
     fun buscarPorId(id: Long): CaixaDagua? =
         caixaDAguaRepository.findById(id).orElse(null)
@@ -66,7 +72,7 @@ class CaixaDaguaService(
             NoSuchElementException("Produto com ID $id não existe")
         }
 
-        caixa.inativo = false
+        caixa.ativo = false
         caixaDAguaRepository.save(caixa)
     }
 }

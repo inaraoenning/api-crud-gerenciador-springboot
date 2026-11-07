@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.PostMapping
 import org.springframework.web.bind.annotation.PutMapping
 import org.springframework.web.bind.annotation.RequestBody
 import org.springframework.web.bind.annotation.RequestMapping
+import org.springframework.web.bind.annotation.RequestParam
 import org.springframework.web.bind.annotation.RestController
 @RestController
 @RequestMapping("/api/caixas-dagua")
@@ -24,7 +25,10 @@ class CaixaDaguaController(
 
     @GetMapping
     @Operation(summary = "Listar todas as caixas")
-    fun listar(): List<CaixaDagua> = service.listarTodas()
+    fun listar(@RequestParam(name="mostrarInativas", defaultValue = "false") mostrarInativas: Boolean):  ResponseEntity<List<CaixaDagua>>{
+        val lista = service.listarTodas(mostrarInativas)
+        return ResponseEntity.ok(lista)
+    }
 
     @GetMapping("/{id}")
     @Operation(summary = "Buscar caixa por ID")

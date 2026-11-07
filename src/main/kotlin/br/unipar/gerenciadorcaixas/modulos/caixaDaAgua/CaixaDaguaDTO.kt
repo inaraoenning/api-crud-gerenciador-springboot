@@ -33,5 +33,7 @@ class CaixaDaguaDTO {
         val quantidade: Int,
         @field:Schema(description = "ID de um fornecedor já cadastrado (opcional)", example = "1")
         val fornecedorId: Long? = null,
+        @field:Schema(description = "Inativo", example = "false")
+        val ativo: Boolean = false,
     )
 }

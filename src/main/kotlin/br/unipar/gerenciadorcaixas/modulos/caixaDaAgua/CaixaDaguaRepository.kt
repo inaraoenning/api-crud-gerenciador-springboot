@@ -10,4 +10,6 @@ interface CaixaDaguaRepository: JpaRepository<CaixaDagua, Long> {
 
     // também pode criar queries customizadas apenas declarando a assinatura do método:
     fun findByMaterial(material: Material): List<CaixaDagua>
+
+    fun findByAtivoTrue(): List<CaixaDagua>
 }
