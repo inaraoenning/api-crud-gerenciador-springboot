@@ -1,47 +1,72 @@
 package br.unipar.gerenciadorcaixas.modulos.caixaDaAgua
 
 import br.unipar.gerenciadorcaixas.enums.Material
+import br.unipar.gerenciadorcaixas.modulos.fornecedor.FornecedorRepository
 import br.unipar.gerenciadorcaixas.model.CaixaDagua
-import kotlin.Long
+import jakarta.transaction.TransactionScoped
+import jakarta.transaction.Transactional
 import org.springframework.stereotype.Service
 
-@Service // Marca a classe como um componente de serviço gerenciado pelo Spring
+@Service
 class CaixaDaguaService(
-    // Injeção de dependência direto no construtor primário (sem precisar de @Autowired)
-    private val caixaDAguaRepository: CaixaDaguaRepository
+    private val caixaDAguaRepository: CaixaDaguaRepository,
+    private val fornecedorRepository: FornecedorRepository,
 ) {
 
-    // Método para salvar um novo registro
-    fun salvar(caixa: CaixaDagua): CaixaDagua = caixaDAguaRepository.save(caixa)
-
-    // Método para buscar todas as caixas cadastradas
-    fun listarTodas(): List<CaixaDagua> {
-        return caixaDAguaRepository.findAll()
+    fun salvar(request: CaixaDaguaDTO.CaixaDaguaRequest): CaixaDagua {
+        val caixa = CaixaDagua(
+            marca = request.marca,
+            modelo = request.modelo,
+            capacidadeLitros = request.capacidadeLitros,
+            largura = request.largura,
+            altura = request.altura,
+            profundidade = request.profundidade,
+            cor = request.cor,
+            material = request.material,
+            formato = request.formato,
+            preco = request.preco,
+            quantidade = request.quantidade,
+            fornecedor = buscarFornecedor(request.fornecedorId),
+        )
+        return caixaDAguaRepository.save(caixa) // id = null → INSERT
     }
 
-    // Método para buscar por ID (retornando nulo se não encontrar, aproveitando o null-safety do
-    // Kotlin)
-    fun buscarPorId(id: Long): CaixaDagua? {
-        return caixaDAguaRepository.findById(id).orElse(null)
-    }
+    fun listarTodas(): List<CaixaDagua> = caixaDAguaRepository.findAll()
 
-    // Método usando a query customizada que criamos no Repository
-    fun buscarPorMaterial(material: Material): List<CaixaDagua> {
-        return caixaDAguaRepository.findByMaterial(material)
-    }
+    fun buscarPorId(id: Long): CaixaDagua? =
+        caixaDAguaRepository.findById(id).orElse(null)
 
-    // Método atualizar
-    fun atualizar(id: Long, dados: CaixaDagua): CaixaDagua? {
+    fun buscarPorMaterial(material: Material): List<CaixaDagua> =
+        caixaDAguaRepository.findByMaterial(material)
+
+    fun atualizar(id: Long, request: CaixaDaguaDTO.CaixaDaguaRequest): CaixaDagua? {
         if (!caixaDAguaRepository.existsById(id)) return null
-        // copy() vem de graça pq caixaDagua é data class
-        // forçamos id = id para o JPA fazer UPDATE (merge) ao invés de INSERT.
-        return caixaDAguaRepository.save(dados.copy(id = id))
+        return caixaDAguaRepository.save(
+            CaixaDagua(
+                id = id, // força UPDATE (merge)
+                marca = request.marca,
+                // ... mesmos campos do salvar ...
+                fornecedor = buscarFornecedor(request.fornecedorId),
+            )
+        )
     }
 
-    // Método Deletar
     fun deletar(id: Long): Boolean {
         if (!caixaDAguaRepository.existsById(id)) return false
         caixaDAguaRepository.deleteById(id)
         return true
+    }
+
+    private fun buscarFornecedor(id: Long?) =
+        id?.let { fornecedorRepository.findById(it).orElse(null) }
+
+    @Transactional
+    fun inativar(id: Long) {
+        val caixa = caixaDAguaRepository.findById(id).orElseThrow{
+            NoSuchElementException("Produto com ID $id não existe")
+        }
+
+        caixa.inativo = false
+        caixaDAguaRepository.save(caixa)
     }
 }

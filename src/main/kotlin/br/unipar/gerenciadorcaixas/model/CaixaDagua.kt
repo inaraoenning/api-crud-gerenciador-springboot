@@ -22,17 +22,18 @@ data class CaixaDagua(
     @Id // Marca qual atributo é a PK
     @GeneratedValue(strategy = GenerationType.SEQUENCE) // Informa que o valor da PK será gerado automaticamente
     val id: Long? = null,
-    val marca: MarcaCaixa = MarcaCaixa.Tigre,
-    val modelo: String = "",
-    val capacidadeLitros: Int = 0,
-    val largura: Double = 0.0,
-    val altura: Double = 0.0,
-    val profundidade: Double = 0.0,
-    val cor: CorCaixa = CorCaixa.Azul,
-    val material: Material = Material.POLIETILENO,
-    val formato: Formato = Formato.Redondo,
-    val preco: Double = 0.0,
-    val quantidade: Int = 0,
+    var marca: MarcaCaixa = MarcaCaixa.Tigre,
+    var modelo: String = "",
+    var capacidadeLitros: Int = 0,
+    var largura: Double = 0.0,
+    var altura: Double = 0.0,
+    var profundidade: Double = 0.0,
+    var cor: CorCaixa = CorCaixa.Azul,
+    var material: Material = Material.POLIETILENO,
+    var formato: Formato = Formato.Redondo,
+    var preco: Double = 0.0,
+    var inativo: Boolean = true,
+    var quantidade: Int = 0,
 
     // @ManyToOne — muitas caixas podem vir do mesmo fornecedor. É aqui que fica a FK.
     // No JSON basta mandar {"fornecedor": {"id": 1}} para referenciar um fornecedor existente.
